@@ -500,6 +500,8 @@ class PortainerAgent(autogen.agentchat.AssistantAgent):
 
 # Example function usage
 if __name__ == "__main__":
+    import sys
+
     llm_config = {
         "timeout": 120,
         "config_list": [
@@ -531,5 +533,5 @@ if __name__ == "__main__":
     user_proxy.initiate_chat(
         portainer_manager,
         max_consecutive_auto_reply=10,
-        message="Create and start a hello-world container (the one provided by docker for use in their tutorial)"
+        message=" ".join(sys.argv[1:]) if len(sys.argv) > 1 else "Create and start a hello-world container (the one provided by docker for use in their tutorial)"
     )
